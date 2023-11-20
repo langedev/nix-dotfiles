@@ -4,12 +4,15 @@
 
 { config, pkgs, ... }:
 
-{
+let
+  systemType = "laptop";
+  #systemType = "desktop";
+in {
   nix.package = pkgs.nixUnstable;
   imports =
     [ 
-      # Hardware Settings (hardware scan)
-      ./hardware-configuration.nix
+      # Hardware Specific Configuration
+      ./${systemType}.nix
 
       # System essentials (boot, lang, hostname, ...)
       ./modules/system
@@ -21,15 +24,10 @@
       ./modules/audio/pipewire
 
       ./modules/shell/fish # This enables fish as the default shell
-
       ./modules/network/browsers/librewolf
-      ./modules/network/networking
       ./modules/network/syncthing
-      ./modules/network/bluetooth
       
       ./modules/login/greetd
-
-      # ./modules/graphics/nvidia
     ];
 
   nixpkgs.config.allowUnfree = true;

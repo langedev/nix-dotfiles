@@ -5,8 +5,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "jibril";
-
   time.timeZone = "America/Los_Angeles";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -17,7 +15,6 @@
     neovim
     nnn
     xdg-user-dirs
-    blueman
   ];
 
   # XDG Compliance
