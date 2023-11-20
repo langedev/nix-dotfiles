@@ -8,6 +8,7 @@
   xdg.enable = true;
 
   imports = [
+    ./programs/hypr
     ./programs/alacritty
     ./programs/pywal
     ./programs/fish
