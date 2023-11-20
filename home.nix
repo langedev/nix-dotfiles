@@ -10,6 +10,7 @@
   imports = [
     ./programs/hypr
     ./programs/dunst
+    ./programs/git
     ./programs/alacritty
     ./programs/pywal
     ./programs/fish
@@ -50,6 +51,9 @@
     BROWSER = "librewolf";
   };
 
+  # Enable man pages, but ensure ~/.manpage isn't created
+  programs.man.enable = true;
+  programs.man.generateCaches = false;
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   home.stateVersion = "23.05"; # don't change lol, u know why
