@@ -8,4 +8,7 @@
     NNN_FIFO = "/tmp/nnn.fifo";
     NNN_TRASH = "1";
   };
+  home.packages = with pkgs; [
+    trash-cli # Trash program for nnn
+  ];
 }

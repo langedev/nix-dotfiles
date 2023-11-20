@@ -5,9 +5,8 @@
   home.username = "pan";
   home.homeDirectory = "/home/pan";
 
-  xdg.enable = true;
-
   imports = [
+    ./programs/xdg
     ./programs/hypr
     ./programs/dunst
     ./programs/git
@@ -20,11 +19,6 @@
 
   home.packages = with pkgs; [
     eww-wayland # eww widgets
-    socat # For hyprland scripts
-    swww # Wallpaper engine
-    trash-cli # Trash application
-    dunst # Notification Manager
-    wlr-randr # Xrandr for wayland
 
     # Applications
     syncthing # For syncing files between computers
