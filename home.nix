@@ -16,27 +16,28 @@
     ./programs/nnn
     ./programs/rofi
     ./programs/nvim
+    ./programs/mpv
   ];
 
   home.packages = with pkgs; [
-    eww-wayland # eww widgets
-
     # Applications
-    syncthing # For syncing files between computers
     discord # Chat app
     gimp # Photo editting
-    mpv # Video player
     pamixer # Volume control
     playerctl # Control media
     wget # Download web stuff
-    zathura # PDF viewer
     feh # Image viewer
-    sshfs # SSH File system
     appimage-run # Lets you run app images
-
     # Development stuff, can be removed
     nodejs # For compiling JS stuff
     jq # May be critical for scripts?
+
+    # Check if want settings?
+    zathura # PDF viewer
+
+    # Expand into other areas
+    sshfs # SSH File system (SSH)
+    eww-wayland # eww widgets (EWW)
   ];
   # home.file = {};
 
