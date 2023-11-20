@@ -15,6 +15,7 @@
     ./programs/fish
     ./programs/nnn
     ./programs/rofi
+    ./programs/nvim
   ];
 
   home.packages = with pkgs; [
