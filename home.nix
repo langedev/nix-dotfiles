@@ -9,6 +9,7 @@
 
   imports = [
     ./programs/hypr
+    ./programs/dunst
     ./programs/alacritty
     ./programs/pywal
     ./programs/fish
