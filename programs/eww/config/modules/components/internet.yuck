@@ -1,0 +1,8 @@
+(defwidget internet []
+  (box :spacing 0 :space-evenly false :style "color: #f5c2e7"
+    network
+  )
+)
+
+(defpoll network :interval "30s"
+  "iwgetid -r")

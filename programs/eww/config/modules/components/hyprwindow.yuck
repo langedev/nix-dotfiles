@@ -1,0 +1,5 @@
+(defwidget hyprwindow []
+  (label :text "${hyprwindow_listener}")
+)
+
+(deflisten hyprwindow_listener :initial "" "bash $XDG_CONFIG_HOME/eww/scripts/get-window-title")

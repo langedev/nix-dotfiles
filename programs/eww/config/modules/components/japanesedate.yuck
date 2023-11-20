@@ -1,0 +1,9 @@
+(defwidget japanesedate []
+  (label :style "color: #DDB6F2"
+         :text japanesedate_time
+  )
+)
+
+(defpoll japanesedate_time :interval "100s"
+  "bash $XDG_CONFIG_HOME/eww/scripts/japanesedate"
+)

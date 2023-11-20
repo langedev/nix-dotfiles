@@ -6,17 +6,19 @@
   home.homeDirectory = "/home/pan";
 
   imports = [
-    ./programs/xdg
-    ./programs/hypr
-    ./programs/dunst
-    ./programs/git
     ./programs/alacritty
-    ./programs/pywal
+    ./programs/dunst
+    ./programs/eww
     ./programs/fish
-    ./programs/nnn
-    ./programs/rofi
-    ./programs/nvim
+    ./programs/git
+    ./programs/hypr
     ./programs/mpv
+    ./programs/nnn
+    ./programs/nvim
+    ./programs/pywal
+    ./programs/rofi
+    ./programs/ssh
+    ./programs/xdg
   ];
 
   home.packages = with pkgs; [
@@ -28,16 +30,12 @@
     wget # Download web stuff
     feh # Image viewer
     appimage-run # Lets you run app images
-    # Development stuff, can be removed
+    zathura # PDF viewer
+    ani-cli # Easy anime player
+
+    # Development stuff
     nodejs # For compiling JS stuff
     jq # May be critical for scripts?
-
-    # Check if want settings?
-    zathura # PDF viewer
-
-    # Expand into other areas
-    sshfs # SSH File system (SSH)
-    eww-wayland # eww widgets (EWW)
   ];
   # home.file = {};
 

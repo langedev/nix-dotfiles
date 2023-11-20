@@ -1,0 +1,15 @@
+(defwidget powerbar []
+  (box
+      :orientation "vertical"
+      :spacing 8
+      :space-evenly false
+      :style "color: #FAB387"
+    (progress
+        :orientation "v"
+        :value {100 - power})
+    "電"
+  )
+)
+
+(defpoll power :interval "1m"
+  "cat /sys/class/power_supply/BAT1/capacity")
