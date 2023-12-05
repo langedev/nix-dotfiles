@@ -10,7 +10,7 @@ let
 in {
   nix.package = pkgs.nixUnstable;
   imports =
-    [ 
+    [
       # Hardware Specific Configuration
       ./${systemType}.nix
 
@@ -23,10 +23,11 @@ in {
 
       ./modules/audio/pipewire
 
-      ./modules/shell/fish
+      #./modules/shell/fish
+      ./modules/shell/xonsh
       ./modules/network/browsers/librewolf
       ./modules/network/syncthing
-      
+
       ./modules/login/greetd
     ];
 
