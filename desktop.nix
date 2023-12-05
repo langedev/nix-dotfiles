@@ -5,6 +5,6 @@
   imports = [
     ./hardware/desktop.nix
       
-    # ./modules/graphics/nvidia
+    ./modules/graphics/nvidia
   ];
 }

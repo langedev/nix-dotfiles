@@ -5,8 +5,8 @@
 { config, pkgs, ... }:
 
 let
-  systemType = "laptop";
-  #systemType = "desktop";
+  #systemType = "laptop";
+  systemType = "desktop";
 in {
   nix.package = pkgs.nixUnstable;
   imports =
@@ -23,7 +23,7 @@ in {
 
       ./modules/audio/pipewire
 
-      ./modules/shell/fish # This enables fish as the default shell
+      ./modules/shell/fish
       ./modules/network/browsers/librewolf
       ./modules/network/syncthing
       

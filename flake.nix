@@ -5,7 +5,7 @@
   };
 
   outputs = { nixpkgs, hyprland, ... }: {
-    nixosConfigurations.jibril = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.onizuka = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ 
 	./configuration.nix 
