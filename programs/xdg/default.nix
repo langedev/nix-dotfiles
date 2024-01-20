@@ -13,4 +13,6 @@
     pictures = "${config.home.homeDirectory}/med/pix";
     videos = "${config.home.homeDirectory}/med/vid";
   };
+
+  xdg.mimeApps.enable = true;
 }

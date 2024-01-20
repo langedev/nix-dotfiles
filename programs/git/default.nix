@@ -2,8 +2,8 @@
 
 {
   programs.git.enable = true;
-  programs.git.userName = "langedev";
-  programs.git.userEmail = "public@daltonlange.com";
+  programs.git.userName = "JuliaLange";
+  programs.git.userEmail = "git@julialange.com";
   programs.git.extraConfig = {
     safe = {
       directory = "/etc/nixos";

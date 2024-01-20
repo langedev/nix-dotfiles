@@ -12,11 +12,13 @@
     ./programs/fish
     ./programs/git
     ./programs/hypr
+    ./programs/lutris
     ./programs/mpv
     ./programs/nnn
     ./programs/nvim
     ./programs/pywal
     ./programs/rofi
+    ./programs/spotify
     ./programs/ssh
     ./programs/xdg
   ];
@@ -32,6 +34,9 @@
     appimage-run # Lets you run app images
     zathura # PDF viewer
     ani-cli # Easy anime player
+    lutgen # LUT generator
+
+    texlive.combined.scheme-full # Latex
 
     # Development stuff
     nodejs # For compiling JS stuff
@@ -44,6 +49,10 @@
     VISUAL = "nvim";
     BROWSER = "librewolf";
   };
+
+  home.sessionPath = [
+    "$HOME/prog/scripts"
+  ];
 
   # Enable man pages, but ensure ~/.manpage isn't created
   programs.man.enable = true;
