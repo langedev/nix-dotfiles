@@ -7,6 +7,7 @@
 
   imports = [
     ./programs/alacritty
+    ./programs/discord
     ./programs/dunst
     ./programs/eww
     ./programs/fish
@@ -25,7 +26,7 @@
 
   home.packages = with pkgs; [
     # Applications
-    discord # Chat app
+    beeper # Better Chat App
     gimp # Photo editting
     pamixer # Volume control
     playerctl # Control media
