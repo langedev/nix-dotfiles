@@ -18,12 +18,16 @@
   ];
 
   # XDG Compliance
+  xdg.portal.config.common.default = "*";
   environment.sessionVariables = rec {
     XDG_CONFIG_HOME = "\${HOME}/.config";
     XDG_CACHE_HOME  = "\${HOME}/.cache";
     XDG_STATE_HOME  = "\${HOME}/.local/state";
     XDG_DATA_HOME   = "\${HOME}/.local/share";
     XDG_BIN_HOME    = "\${HOME}/.local/bin";
+    PATH            = [
+      "\${HOME}/prog/scripts"
+    ];
   };
 
   users.groups = {
