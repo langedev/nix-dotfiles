@@ -8,6 +8,6 @@ import shelve
 with shelve.open($HYPR_WORK_DB) as db:
   db["primary"] = "home"
   db["secondary"] = "chat"
-  db["secondaries"] = ["chat", "web"]
+  db["secondaries"] = ["chat", "web", "med"]
   db["secondary_extras"] = 1
   db["primary_extras"] = 1
