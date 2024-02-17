@@ -15,6 +15,7 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ags.url = "github:Aylur/ags";
   };
 
   outputs = { nixpkgs, home-manager, hyprland, ... }@inputs:
