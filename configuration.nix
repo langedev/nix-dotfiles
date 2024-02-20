@@ -5,12 +5,12 @@
 { config, pkgs, ... }:
 
 let
-  systemType = "laptop";
-  #systemType = "desktop";
+  #systemType = "laptop";
+  systemType = "desktop";
 in {
   nix.package = pkgs.nixUnstable;
   imports =
-    [ 
+    [
       # Hardware Specific Configuration
       ./${systemType}.nix
 
@@ -23,10 +23,11 @@ in {
 
       ./modules/audio/pipewire
 
-      ./modules/shell/fish # This enables fish as the default shell
+      #./modules/shell/fish
+      ./modules/shell/xonsh
       ./modules/network/browsers/librewolf
       ./modules/network/syncthing
-      
+
       ./modules/login/greetd
     ];
 
