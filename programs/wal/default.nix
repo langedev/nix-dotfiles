@@ -20,9 +20,9 @@ let rootPath = ./.; in
       # # absolute path to the file to write the template (after templating)
       # target = "~/.config/dunst/dunstrc"
     '';
-  }
+  };
   xdg.configFile."wallust-templates" = {
     source = rootPath + "/templates";
     target = "wallust/";
-  }
+  };
 }
