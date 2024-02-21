@@ -18,10 +18,10 @@
     ./programs/mpv
     ./programs/nnn
     ./programs/nvim
-    ./programs/pywal
     ./programs/rofi
     ./programs/spotify
     ./programs/ssh
+    ./programs/wal
     ./programs/xdg
   ];
 
