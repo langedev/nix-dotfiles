@@ -4,6 +4,7 @@ let rootPath = ./.; in
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.extraConfig = ''
       ${builtins.readFile ./window_rules.conf}
+      ${builtins.readFile ./league_rules.conf}
       ${builtins.readFile ./settings.conf}
       ${builtins.readFile ./nvidia.conf}
       ${builtins.readFile ./keybinds.conf}
