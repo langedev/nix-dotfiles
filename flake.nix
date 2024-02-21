@@ -6,16 +6,15 @@
   };
 
   outputs = { self, nixpkgs, personalpkgs, hyprland, ... }:
-  # let
-  #   personal-overlay = final: prev: {
-  #     personal = personalpkgs.legacyPackages.${prev.system};
-  #   };
-  # in {
-  {
+  let
+    personal-overlay = final: prev: {
+      personal = personalpkgs.legacyPackages.${prev.system};
+    };
+  in {
     nixosConfigurations.onizuka = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        # ({ config, pkgs, ... }: { nixpkgs.overlays = [ personal-overlay ]; })
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ personal-overlay ]; })
         hyprland.nixosModules.default
         { programs.hyprland.enable = true; }
         ./systems/shared
@@ -26,7 +25,7 @@
     nixosConfigurations.jibril = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        # ({ config, pkgs, ... }: { nixpkgs.overlays = [ personal-overlay ]; })
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ personal-overlay ]; })
         hyprland.nixosModules.default
         { programs.hyprland.enable = true; }
         ./systems/shared
