@@ -3,32 +3,24 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
-let
-  #systemType = "laptop";
-  systemType = "desktop";
-in {
+{
   nix.package = pkgs.nixUnstable;
   imports =
     [
-      # Hardware Specific Configuration
-      ./${systemType}.nix
-
       # System essentials (boot, lang, hostname, ...)
-      ./modules/system
+      ../../modules/system
 
-      ./modules/user
+      ../../modules/user
 
-      ./modules/themeing
+      ../../modules/themeing
 
-      ./modules/audio/pipewire
+      ../../modules/audio/pipewire
 
-      #./modules/shell/fish
-      ./modules/shell/xonsh
-      ./modules/network/browsers/librewolf
-      ./modules/network/syncthing
+      ../../modules/shell/xonsh
+      ../../modules/network/browsers/librewolf
+      ../../modules/network/syncthing
 
-      ./modules/login/greetd
+      ../../modules/login/greetd
     ];
 
   nixpkgs.config.allowUnfree = true;

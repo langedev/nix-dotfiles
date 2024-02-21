@@ -3,8 +3,7 @@
 {
   networking.hostName = "onizuka";
   imports = [
-    ./hardware/desktop.nix
-      
-    ./modules/graphics/nvidia
+    ./hardware.nix
+    ../../modules/graphics/nvidia
   ];
 }
