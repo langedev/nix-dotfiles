@@ -23,6 +23,8 @@
     ./programs/ssh
     ./programs/wal
     ./programs/xdg
+
+    ./services/timers
   ];
 
   home.packages = with pkgs; [
