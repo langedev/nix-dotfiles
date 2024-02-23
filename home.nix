@@ -6,11 +6,11 @@
   home.homeDirectory = "/home/pan";
 
   imports = [
+    # ./programs/dunst
     # ./programs/eww
     ./programs/ags
     ./programs/alacritty
     ./programs/discord
-    ./programs/dunst
     ./programs/fish
     ./programs/git
     ./programs/hypr
