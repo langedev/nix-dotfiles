@@ -30,7 +30,7 @@ let rootPath = ./.; in
       };
       Service = {
         Type="simple";
-        ExecStart="/home/pan/.config/timer_scripts/notify-time.sh 60000";
+        ExecStart="/home/pan/.config/timer_scripts/notify-time.sh 60000 1";
       };
     };
     quarterly-time = {
@@ -40,7 +40,7 @@ let rootPath = ./.; in
       };
       Service = {
         Type="simple";
-        ExecStart="/home/pan/.config/timer_scripts/notify-time.sh 10000";
+        ExecStart="/home/pan/.config/timer_scripts/notify-time.sh 10000 0";
       };
     };
   };
