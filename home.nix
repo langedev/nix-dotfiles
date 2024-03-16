@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, xdg, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -23,6 +23,7 @@
     ./programs/ssh
     ./programs/wal
     ./programs/xdg
+    ./programs/xonsh
 
     ./services/timers
   ];
@@ -39,6 +40,7 @@
     zathura # PDF viewer
     ani-cli # Easy anime player
     lutgen # LUT generator
+    prismlauncher # Minecraft launcher
 
     texlive.combined.scheme-full # Latex
 
@@ -52,6 +54,8 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     BROWSER = "librewolf";
+    GRADLE_USER_HOME = "/home/pan/.local/share" + "/gradle";
+    CUDA_CACHE_PATH = "/home/pan/.cache" + "/nv";
   };
 
   home.sessionPath = [

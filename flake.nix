@@ -2,14 +2,11 @@
   description = "Home Manager configuration of pan";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:langedev/nixpkgs/nixos-unstable";
-
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:langedev/home-manager";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
