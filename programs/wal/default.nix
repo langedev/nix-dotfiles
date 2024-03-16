@@ -3,7 +3,7 @@ let rootPath = ./.; in
 {
   home.packages = with pkgs; [
     wallust # A better pywal
-    pywalfox # Update librewolf's colorscheme based on wal
+    pywalfox-native # Update librewolf's colorscheme based on wal
   ];
   xdg.configFile."wallust-config" = {
     target = "wallust/wallust.toml";
@@ -21,8 +21,8 @@ let rootPath = ./.; in
       # target = "~/.config/dunst/dunstrc"
     '';
   };
-  xdg.configFile."wallust-templates" = {
-    source = rootPath + "/templates";
-    target = "wallust/";
-  };
+  #xdg.configFile."wallust-templates" = {
+  #  source = rootPath + "/templates";
+  #  target = "wallust/";
+  #};
 }
