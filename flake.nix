@@ -11,6 +11,7 @@
   outputs = { self, nixpkgs, hyprland, aagl, ... }@inputs:
   {
     nixosConfigurations.onizuka = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
       system = "x86_64-linux";
       modules = [
         hyprland.nixosModules.default
