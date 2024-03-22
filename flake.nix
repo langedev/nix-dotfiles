@@ -1,34 +1,26 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
     hyprland.url = "github:hyprwm/Hyprland";
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
   };
 
-  outputs = { self, nixpkgs, hyprland, aagl, ... }@inputs:
-  {
-    nixosConfigurations.onizuka = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, hyprland, aagl, sops-nix, ... }@inputs:
+  let
+    defaultConfig = extraModules: nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       system = "x86_64-linux";
       modules = [
-        hyprland.nixosModules.default
-        { programs.hyprland.enable = true; }
         ./systems/shared
-        ./systems/onizuka
-      ];
+      ] ++ extraModules;
     };
-
-    nixosConfigurations.jibril = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        hyprland.nixosModules.default
-        { programs.hyprland.enable = true; }
-        ./systems/shared
-        ./systems/jibril
-      ];
-    };
+  in
+  {
+    nixosConfigurations.onizuka = defaultConfig [ ./systems/onizuka ];
+    nixosConfigurations.jibril = defaultConfig [ ./systems/jibril ];
   };
 }
