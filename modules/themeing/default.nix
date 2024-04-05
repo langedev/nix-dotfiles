@@ -1,7 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
-  fonts.packages = with pkgs; [
-    cascadia-code
-  ];
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      cascadia-code
+      source-han-sans # Pan-CJK font
+    ];
+  };
 }
