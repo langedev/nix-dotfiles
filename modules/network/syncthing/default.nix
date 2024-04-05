@@ -1,9 +1,19 @@
 { config, pkgs, lib, ... }:
 
 {
-  services.syncthing.enable = true;
-  services.syncthing.user = "pan";
-  services.syncthing.dataDir = "/home/pan/dox";
-  services.syncthing.overrideFolders = false;
-  services.syncthing.overrideDevices = false;
+  services.syncthing = {
+    enable = true;
+    user = "pan";
+    dataDir = "/home/pan/dox/Sync";
+    configDir = "/home/pan/.config/syncthing";
+    overrideFolders = true;
+    overrideDevices = true;
+
+    settings = {
+      gui = {
+        user = "pan";
+        password = "password";
+      };
+    };
+  };
 }
