@@ -7,6 +7,7 @@
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = { self, nixpkgs, hyprland, aagl, sops-nix, ... }@inputs:
