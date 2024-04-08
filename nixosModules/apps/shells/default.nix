@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./bluetooth
-    ./wireless
+    ./fish
+    ./xonsh
   ];
 }

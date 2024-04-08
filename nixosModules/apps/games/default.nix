@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  import = [
+  imports = [
     ./anime-launcher
     ./steam
   ];

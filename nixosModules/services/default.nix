@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  import = [
+  imports = [
     ./graphics
     ./networking
     ./pipewire
