@@ -1,12 +1,32 @@
 { config, pkgs, lib, ... }:
 
 {
-  networking.hostName = "onizuka";
   imports = [
     ./hardware.nix
-    ../../modules/graphics/nvidia
-    ../../modules/etc/steam
-    ../../modules/etc/anime-launcher
-    ../../modules/etc/input-remapper
   ];
+  networking.hostName = "onizuka";
+  nix.package = pkgs.nixUnstable;
+  nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "23.05";
+
+  config = {
+    nvidia.enable = true;
+    pipewire.enable = true;
+    polkit.enable = true;
+
+    user.name = "pan";
+    user.timezone = "America/Los_Angeles";
+
+    tuigreet.enable = true;
+    hyprland.enable = true;
+
+    librewolf.enable = true;
+    xonsh.enable = true;
+    syncthing.enable = true;
+
+    steam.enable = true;
+    aagl.enable = true;
+    aagl.honkai-rail = true;
+    input-remapper.enable = true;
+  };
 }
