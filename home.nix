@@ -1,4 +1,4 @@
-{ config, pkgs, xdg, ... }:
+{ config, pkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -8,6 +8,7 @@
   imports = [
     # ./programs/dunst
     # ./programs/eww
+    # ./programs/spotify
     ./programs/ags
     ./programs/alacritty
     ./programs/discord
@@ -19,12 +20,14 @@
     ./programs/nnn
     ./programs/nvim
     ./programs/rofi
-    ./programs/spotify
     ./programs/ssh
     ./programs/wal
     ./programs/xdg
     ./programs/xonsh
+    ./programs/obs
+    ./programs/kitty
 
+    # ./services/scripts
     ./services/timers
   ];
 
@@ -41,6 +44,7 @@
     ani-cli # Easy anime player
     lutgen # LUT generator
     prismlauncher # Minecraft launcher
+    unzip # Unzip utility
 
     texlive.combined.scheme-full # Latex
 
@@ -67,5 +71,5 @@
   programs.man.generateCaches = false;
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  home.stateVersion = "23.05"; # don't change lol, u know why
+  home.stateVersion = "23.05";
 }
