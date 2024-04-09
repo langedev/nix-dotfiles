@@ -5,7 +5,7 @@
     wireless.enable = lib.mkEnableOption "Enables wireless";
   };
 
-  config = lib.mkIf confi.wireless.enable {
+  config = lib.mkIf config.wireless.enable {
     networking.wireless = {
       enable = true;
       userControlled = {

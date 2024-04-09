@@ -5,8 +5,9 @@ let rootPath = ./.; in
     sops-nix.enable = lib.mkEnableOption "Enables nix-sops for secret management";
   };
 
+  imports =  [ inputs.sops-nix.nixosModules.sops ];
+
   config = lib.mkIf config.sops-nix.enable {
-    imports =  [ inputs.sops-nix.nixosModules.sops ];
 
     sops = {
       defaultSopsFile = rootPath + "secrets.yaml";

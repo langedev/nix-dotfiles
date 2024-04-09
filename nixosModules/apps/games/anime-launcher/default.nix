@@ -12,8 +12,9 @@
       "Enables honkai 3rd impact";
   };
 
+  imports =  [ inputs.aagl.nixosModules.default ];
+
   config = lib.mkIf config.aagl.enable {
-    imports =  [ inputs.aagl.nixosModules.default ];
     nix.settings = inputs.aagl.nixConfig;
 
     programs.honkers-railway-launcher.enable =

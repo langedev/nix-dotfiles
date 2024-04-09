@@ -1,12 +1,16 @@
 { inputs, config, pkgs, lib, ... }:
 
 {
+
   options = {
     hyprland.enable = lib.mkEnableOption "Enables hyprland";
   };
 
+  imports = [
+    inputs.hyprland.nixosModules.default
+  ];
+
   config = lib.mkIf config.hyprland.enable {
-    imports =  [ inputs.hyprland.nixosModules.default ];
     programs.hyprland.enable = true;
     nix.settings = {
       substituters = [ "https://hyprland.cachix.org" ];

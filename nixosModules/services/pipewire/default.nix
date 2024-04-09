@@ -13,9 +13,9 @@
       alsa.enable = false;
       alsa.support32Bit = false;
       pulse.enable = true;
-      environment.systemPackages = with pkgs; [
-        pulsemixer
-      ];
     };
+    environment.systemPackages = with pkgs; [
+      pulsemixer
+    ];
   };
 }

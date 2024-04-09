@@ -4,7 +4,7 @@
   options = {
     user.name = lib.mkOption { default = "pan"; };
     user.timezone = lib.mkOption { default = "America/Los_Angeles"; };
-    font.extraFonts = lib.mkOption { default = []; };
+    system.extraFonts = lib.mkOption { default = []; };
   };
 
   config = {
