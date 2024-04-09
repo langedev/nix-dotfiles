@@ -9,6 +9,7 @@ let rootPath = ./.; in
       ${builtins.readFile ./nvidia.conf}
       ${builtins.readFile ./keybinds.conf}
       ${builtins.readFile ./xwaylandvideobridge.conf}
+      exec-once=${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
     '';
   # wayland.windowManager.hyprland.enableNvidiaPatches = true;
   home.packages = with pkgs; [
@@ -20,6 +21,7 @@ let rootPath = ./.; in
     hyprpicker # Colorpicker, needed for screenshot tool
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast # Screenshot tool
     xwaylandvideobridge # Allows screensharing with xwayland apps
+    polkit-kde-agent # Polkit handler
   ];
   # Hyprland screenshot tool
   xdg.configFile."hypr-scripts" = {
