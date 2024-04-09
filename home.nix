@@ -26,6 +26,7 @@
     ./programs/xonsh
     ./programs/obs
     ./programs/kitty
+    ./programs/zsh
 
     # ./services/scripts
     ./services/timers
