@@ -9,7 +9,7 @@
 
   config = lib.mkIf config.xonsh.enable {
     programs.xonsh.enable = true;
-    users.users.defaultUser.shell = lib.mkIf config.fish.setDefault pkgs.xonsh;
+    users.users.defaultUser.shell = lib.mkIf config.xonsh.setDefault pkgs.xonsh;
     environment.shells = with pkgs; [ xonsh ];
   };
 }
