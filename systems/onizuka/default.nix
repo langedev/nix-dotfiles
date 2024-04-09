@@ -20,7 +20,8 @@
   hyprland.enable = true;
 
   librewolf.enable = true;
-  xonsh.enable = true;
+  zsh.enable = true;
+  zsh.setDefault = true;
   syncthing.enable = true;
 
   steam.enable = true;

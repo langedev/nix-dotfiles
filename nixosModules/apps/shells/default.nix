@@ -4,5 +4,6 @@
   imports = [
     ./fish
     ./xonsh
+    ./zsh
   ];
 }
