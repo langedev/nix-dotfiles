@@ -27,6 +27,7 @@
     ./programs/obs
     ./programs/kitty
     ./programs/zsh
+    ./programs/lf
 
     # ./services/scripts
     ./services/timers
