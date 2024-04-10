@@ -54,6 +54,7 @@
       enableDefaultPackages = true;
       packages = with pkgs; [
         cascadia-code
+        (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
         source-han-sans # Pan-CJK font
       ] ++ config.system.extraFonts;
     };
