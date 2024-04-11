@@ -23,6 +23,7 @@
   zsh.enable = true;
   zsh.setDefault = true;
   syncthing.enable = true;
+  virtualbox.enable = true;
 
   steam.enable = true;
   aagl.enable = true;
