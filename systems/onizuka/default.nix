@@ -15,6 +15,7 @@
 
   user.name = "pan";
   user.timezone = "America/Los_Angeles";
+  system.doAutoUpgrade = true;
 
   tuigreet.enable = true;
   hyprland.enable = true;
