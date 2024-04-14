@@ -17,17 +17,18 @@
     ags.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, ... }@inputs: let
+  outputs = { nixpkgs, home-manager, ... }@inputs:
+  let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    homeConfigurations."pan" = home-manager.lib.homeManagerConfiguration {
+    defaultConfig = extraModules: home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = { inherit inputs; };
       modules = [
-        hyprland.homeManagerModules.default
-        ./home.nix
-      ];
+        ./hmModules
+      ] ++ extraModules;
     };
+  in {
+    homeConfigurations.pan = defaultConfig [ ./systems/pan ];
   };
 }
