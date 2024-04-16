@@ -27,6 +27,22 @@
   feh.enable = true;
 
   neovim.enable = true;
+  neovim.languages = {
+    nix.enable = true;
+  };
+  neovim.plugins = {
+    comments.enable = true;
+    fugitive.enable = true;
+    lualine.enable = true;
+    luasnip.enable = true;
+    nvimcmp.enable = true;
+    telescope = {
+      enable = true;
+      fzf.enable = true;
+    };
+    treesitter.enable = true;
+  };
+
   lf.enable = true;
   lf.hiddenfiles = [
     "${config.home.homeDirectory}/.librewolf"

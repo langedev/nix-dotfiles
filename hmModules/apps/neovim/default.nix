@@ -3,84 +3,91 @@
 {
   options.neovim = {
     enable = lib.mkEnableOption "Enables neovim";
+    languages = {
+      nix.enable = lib.mkEnableOption "Enables nix support";
+    };
+    plugins = {
+      comments.enable = lib.mkEnableOption "Enables nvim-comment";
+      fugitive.enable = lib.mkEnableOption "Enables git-fugitive";
+      lualine.enable = lib.mkEnableOption "Enables lualine";
+      luasnip.enable = lib.mkEnableOption "Enables luasnip snippets";
+      nvimcmp.enable = lib.mkEnableOption "Enables nvim completion";
+      telescope = {
+        enable = lib.mkEnableOption "Enables telescope";
+        fzf.enable = lib.mkEnableOption "Enables telescope-fzf";
+      };
+      treesitter.enable = lib.mkEnableOption "Enables treesitter";
+    };
   };
+
+  imports = [
+    ./plugin/lsp.nix
+    ./plugin/nvimcmp.nix
+    ./plugin/telescope.nix
+    ./plugin/treesitter.nix
+  ];
 
   config = lib.mkIf config.neovim.enable {
     home.sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
+
     programs.neovim = {
       enable = true;
-      extraConfig = ''
-        ${builtins.readFile ./init.vim}
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+
+      extraLuaConfig = ''
+        ${builtins.readFile ./options.lua}
       '';
-      plugins = with pkgs.vimPlugins; [
-        { # Personal Wiki
-          plugin = vimwiki;
-          config = ''
-            let g:vimwiki_list = [{'path': '~/dox/wiki', 'links_space_char': '_',
-                         \ 'ext': '.md', 'syntax': 'markdown'}]
-          '';
-        }
-        { # NNN in vim
-          plugin = nnn-vim;
-          config = ''
-            let g:nnn#layout = { 'window': {
-                \ 'width': 0.35,
-                \ 'height': 0.5,
-                \ 'xoffset': 1.0,
-                \ 'highlight': 'Debug' } } " hover window
-            let g:nnn#action = {
-                \ '<c-t>': 'tab split',
-                \ '<c-s>': 'split',
-                \ '<c-v>': 'vsplit' }
-            let g:nnn#command = 'nnn -HoeT v'
-            let g:nnn#replace_netrw = 1
-            '';
-        }
-        { # Fuzzy searches
-          plugin = fzf-vim;
-          config = ''
-            map <C-f> :Files<CR>
-            map <C-a> :Ag<CR>
-          '';
-        }
-        { # Auto completions
-          plugin = coc-nvim;
-          config = ''
-            function! s:check_back_space() abort
-              let col = col('.') - 1
-              return !col || getline('.')[col - 1]  =~# '\s'
-            endfunction
 
-            inoremap <silent><expr> <TAB>
-                  \ pumvisible() ? "\<C-n>" :
-                  \ <SID>check_back_space() ? "\<TAB>" :
-                  \ coc#refresh()
-            inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-          '';
-        }
-        vim-commentary # multi-line comments
-        vim-fugitive # Git Plugin
-        vimtex # Latex support
-        tagbar # File tagging
-
-        # === LOOK AND FEEL ===
-        { # Status Bar
-          plugin = vim-airline;
-          config = ''
-            let g:airline#extensions#tagbar#flags = 'fs'
-          '';
-        }
-        { # Rainbow Parenthesis
-          plugin = rainbow;
-          config = ''
-            let g:rainbow_actve = 1
-          '';
-        }
-        vim-polyglot # Syntax Highlighting
+      extraPackages = with pkgs; [
+        (lib.mkIf config.neovim.languages.nix.enable nil)
       ];
+
+      # Additional packages are added through imports
+      plugins = let
+        lopts = lib.lists.optionals;
+        cfgp = config.neovim.plugins;
+        cfgl = config.neovim.languages;
+
+        comments = lopts cfgp.comments.enable (with pkgs.vimPlugins; [
+          {
+            plugin = comment-nvim;
+            type = "lua";
+            config = "require(\"Comment\").setup()";
+          }
+        ]);
+
+        fugitive = lopts cfgp.fugitive.enable (with pkgs.vimPlugins; [
+          vim-fugitive
+        ]);
+
+        luasnip-pkg = lopts cfgp.luasnip.enable (with pkgs.vimPlugins; [
+          luasnip
+          friendly-snippets
+          (lib.mkIf cfgp.nvimcmp.enable cmp_luasnip)
+        ]);
+
+        lualine = lopts cfgp.lualine.enable (with pkgs.vimPlugins; [
+          {
+            plugin = lualine-nvim;
+            type = "lua";
+            config = ''
+              require("lualine").setup({
+                icons_enabled = true,
+              })
+            '';
+          }
+          nvim-web-devicons
+        ]);
+
+        nix-pkg = lopts cfgl.nix.enable (with pkgs.vimPlugins; [
+          vim-nix
+        ]);
+      in comments ++ fugitive ++ luasnip-pkg ++ lualine ++ nix-pkg;
     };
   };
 }
