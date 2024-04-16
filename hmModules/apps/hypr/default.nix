@@ -32,6 +32,7 @@ let rootPath = ./.; in
       hyprpicker # Colorpicker, needed for screenshot tool
       hyprcursor # Hyprland cursor
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast # Screenshot tool
+      xonsh
       polkit-kde-agent # Polkit handler
     ];
     # Hyprland screenshot tool
