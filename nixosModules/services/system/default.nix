@@ -39,6 +39,7 @@
         "\${HOME}/prog/scripts"
       ];
     };
+    nix.settings.use-xdg-base-directories = true;
 
     users.groups = {
       wheel = { };
