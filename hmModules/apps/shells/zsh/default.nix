@@ -18,11 +18,11 @@
       history.path = "${config.xdg.dataHome}/zsh/history";
       initExtra = let
         lf = lib.optionalString config.lf.enable ''
-          # Lf change directory command
-          lfcd () {
-            cd "$(command lf -print-last-dir "$@")"
+          # Lf changes directory
+          lf () {
+            cd "$(command ${pkgs.lf}/bin/lf -print-last-dir "$@")"
           }
-          bindkey -s '^o' 'lfcd\n'
+          bindkey -s '^o' 'lf\n'
         '';
 
       in lf + ''
