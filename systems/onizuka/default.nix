@@ -27,6 +27,7 @@
   virtualbox.enable = true;
 
   steam.enable = true;
+  steam.gamemode.enable = true;
   aagl.enable = true;
   aagl.honkai-rail = true;
   input-remapper.enable = true;
