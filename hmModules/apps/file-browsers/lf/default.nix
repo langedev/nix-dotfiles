@@ -10,8 +10,6 @@
   config = lib.mkIf config.lf.enable {
     xdg.configFile."lf/icons".source = ./icons;
 
-
-
     programs.lf = {
       enable = true;
       settings = {
@@ -29,8 +27,15 @@
       };
       commands = {
         dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"'';
-        trash = lib.mkIf config.trash.enable 
-                  ''%${pkgs.trash-cli}/bin/trash "$fx"'';
+        trash = lib.mkIf config.trash.enable ''
+          %${pkgs.trash-cli}/bin/trash "$fx"
+        '';
+        zoxide-cd  = lib.mkIf config.zoxide.enable ''
+          ''${{
+            result="$(${pkgs.zoxide}/bin/zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+            ${pkgs.lf}/bin/lf -remote "send $id cd \"$result\""
+          }}
+        '';
         mkdir = ''
           ''${{
             printf "Directory Name: "
@@ -45,6 +50,11 @@
             touch $FILE
           }}
         '';
+        on-cd = lib.mkIf config.zoxide.enable ''
+          &{{
+            ${pkgs.zoxide}/bin/zoxide add "$PWD"
+          }}
+        '';
       };
       keybindings = let
         leader = config.lf.leader;
@@ -56,6 +66,7 @@
         "${leader}d" = "mkdir";
         "${leader}f" = "mkfile";
         "${leader}m" = "dragon-out";
+        "${leader}z" = lib.mkIf config.zoxide.enable "zoxide-cd";
       };
       extraConfig =
       let

@@ -55,6 +55,7 @@
     "${config.home.homeDirectory}/.steam*"
     "${config.home.homeDirectory}/.zshenv"
   ];
+  zoxide.enable = true;
 
   gimp.enable = true;
 

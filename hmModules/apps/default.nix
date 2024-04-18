@@ -14,5 +14,6 @@
     ./rofi
     ./shells
     ./terminal-emulators
+    ./zoxide
   ];
 }
