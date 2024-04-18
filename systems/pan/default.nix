@@ -13,6 +13,7 @@
   timer.enableQuarterly = true;
   colors.enable = true;
   manpages.enable = true;
+  trash.enable = true;
 
   zsh.enable = true;
   kitty.enable = true;

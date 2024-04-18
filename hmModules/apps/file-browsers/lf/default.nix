@@ -10,6 +10,8 @@
   config = lib.mkIf config.lf.enable {
     xdg.configFile."lf/icons".source = ./icons;
 
+
+
     programs.lf = {
       enable = true;
       settings = {
@@ -27,6 +29,8 @@
       };
       commands = {
         dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"'';
+        trash = lib.mkIf config.trash.enable 
+                  ''%${pkgs.trash-cli}/bin/trash "$fx"'';
         mkdir = ''
           ''${{
             printf "Directory Name: "
@@ -38,7 +42,7 @@
           ''${{
             printf "File Name: "
             read FILE
-            mkdir $FILE
+            touch $FILE
           }}
         '';
       };
@@ -48,6 +52,7 @@
         "${leader}" = "";
         "v" = ":toggle; down";
         "." = "set hidden!";
+        "x" = lib.mkIf config.trash.enable "trash";
         "${leader}d" = "mkdir";
         "${leader}f" = "mkfile";
         "${leader}m" = "dragon-out";
