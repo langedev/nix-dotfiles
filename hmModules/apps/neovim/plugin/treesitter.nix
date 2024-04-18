@@ -18,7 +18,12 @@ in {
         }
       '';
 
-      treeplugs = p: lib.lists.optional cfgl.nix.enable p.tree-sitter-nix;
+      # I've tried many things, and can't get treesitter plugins changing
+      # dynamically. For not just have them always loaded regardless of config
+      treeplugs = p: [
+        p.tree-sitter-nix
+        p.tree-sitter-c
+      ];
     in with pkgs.vimPlugins; [
       {
         plugin = (nvim-treesitter.withPlugins treeplugs);

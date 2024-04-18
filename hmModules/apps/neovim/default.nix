@@ -5,6 +5,7 @@
     enable = lib.mkEnableOption "Enables neovim";
     languages = {
       nix.enable = lib.mkEnableOption "Enables nix support";
+      c.enable = lib.mkEnableOption "Enables c support";
     };
     plugins = {
       comments.enable = lib.mkEnableOption "Enables nvim-comment";
@@ -45,6 +46,7 @@
 
       extraPackages = with pkgs; [
         (lib.mkIf config.neovim.languages.nix.enable nil)
+        (lib.mkIf config.neovim.languages.c.enable libclang)
       ];
 
       # Additional packages are added through imports

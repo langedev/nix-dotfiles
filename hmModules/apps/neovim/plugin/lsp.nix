@@ -37,6 +37,8 @@
         local capabilities = vim.lsp.protocol.make_client_capabilities()
       '' + lib.strings.optionalString cfgl.nix.enable ''
         require('lspconfig').nil_ls.setup {}
+      '' + lib.strings.optionalString cfgl.c.enable ''
+        require('lspconfig').clangd.setup {}
       '';
     in with pkgs.vimPlugins; [
       {
