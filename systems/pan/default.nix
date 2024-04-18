@@ -43,6 +43,7 @@
       fzf.enable = true;
     };
     treesitter.enable = true;
+    wiki.enable = true;
   };
 
   lf.enable = true;

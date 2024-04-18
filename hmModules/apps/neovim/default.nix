@@ -18,6 +18,7 @@
         fzf.enable = lib.mkEnableOption "Enables telescope-fzf";
       };
       treesitter.enable = lib.mkEnableOption "Enables treesitter";
+      wiki.enable = lib.mkEnableOption "Enables a wiki";
     };
   };
 
@@ -89,7 +90,24 @@
         nix-pkg = lopts cfgl.nix.enable (with pkgs.vimPlugins; [
           vim-nix
         ]);
-      in comments ++ fugitive ++ luasnip-pkg ++ lualine ++ nix-pkg;
+
+        wiki = lopts cfgp.wiki.enable (with pkgs.vimPlugins; [
+          {
+            plugin = vimwiki;
+            type = "lua";
+            config = ''
+              vim.g.vimwiki_list = {
+                {
+                  path = '${config.xdg.userDirs.documents}/wiki',
+                  links_space_char = '_',
+                  ext = '.md',
+                  syntax = 'markdown',
+                }
+              }
+            '';
+          }
+        ]);
+      in comments ++ fugitive ++ luasnip-pkg ++ lualine ++ nix-pkg ++ wiki;
     };
   };
 }
