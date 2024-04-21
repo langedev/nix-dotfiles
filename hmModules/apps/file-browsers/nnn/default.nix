@@ -13,5 +13,8 @@
       NNN_FIFO = "/tmp/nnn.fifo";
       NNN_TRASH = lib.mkIf config.trash.enable "1";
     };
+    fish.extraFunctions = lib.mkIf config.fish.enable {
+      n = ''${builtins.readFile ./nnn_fish_function.fish}'';
+    };
   };
 }

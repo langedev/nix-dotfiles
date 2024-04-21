@@ -15,7 +15,7 @@
   manpages.enable = true;
   trash.enable = true;
 
-  zsh.enable = true;
+  fish.enable = true;
   kitty.enable = true;
   kitty.font = "Cascadia Code";
   git.enable = true;
