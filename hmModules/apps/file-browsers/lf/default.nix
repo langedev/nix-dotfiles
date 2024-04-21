@@ -10,6 +10,13 @@
   config = lib.mkIf config.lf.enable {
     xdg.configFile."lf/icons".source = ./icons;
 
+    fish.extraFunctions = lib.mkIf config.fish.enable {
+      lf = {
+        body = ''cd "$(command ${pkgs.lf}/bin/lf -print-last-dir "$argv")"'';
+        wraps = "${pkgs.lf}/bin/lf";
+      };
+    };
+
     programs.lf = {
       enable = true;
       settings = {

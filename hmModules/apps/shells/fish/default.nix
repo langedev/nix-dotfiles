@@ -1,10 +1,19 @@
 { config, pkgs, lib, ... }:
-
-{
+let
+  functionModule = with lib.types; submodule {
+    options = {
+      body = lib.mkOption { type = lines; };
+      wraps = lib.mkOption {
+        type = nullOr str;
+        default = null;
+      };
+    };
+  };
+in {
   options.fish = {
     enable = lib.mkEnableOption "Enables fish";
     extraFunctions = lib.mkOption {
-      type = with lib.types; attrsOf lines;
+      type = with lib.types; attrsOf (either lines functionModule);
       default = {};
     };
   };
