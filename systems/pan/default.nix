@@ -29,8 +29,9 @@
 
   neovim.enable = true;
   neovim.languages = {
-    nix.enable = true;
     c.enable = true;
+    nix.enable = true;
+    rust.enable = true;
   };
   neovim.plugins = {
     comments.enable = true;

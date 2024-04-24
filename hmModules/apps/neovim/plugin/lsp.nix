@@ -39,6 +39,8 @@
         require('lspconfig').nil_ls.setup {}
       '' + lib.strings.optionalString cfgl.c.enable ''
         require('lspconfig').clangd.setup {}
+      '' + lib.strings.optionalString cfgl.rust.enable ''
+        require('lspconfig').rustaceanvim.setup {}
       '';
     in with pkgs.vimPlugins; [
       {
