@@ -22,8 +22,10 @@
 
     hardware.nvidia = {
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
+
+    boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
 
     environment.systemPackages = with pkgs; [
       nvidia-vaapi-driver
