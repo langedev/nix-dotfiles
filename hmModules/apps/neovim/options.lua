@@ -2,7 +2,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.list = true
-vim.bo.filetype = true
+vim.bo.filetype = "on"
 vim.opt.updatetime = 300
 
 -- Indentations
