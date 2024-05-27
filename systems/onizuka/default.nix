@@ -11,6 +11,7 @@
   nvidia.enable = true;
   pipewire.enable = true;
   polkit.enable = true;
+  tablet.enable = true;
 
   user.name = "pan";
   user.timezone = "America/Los_Angeles";
