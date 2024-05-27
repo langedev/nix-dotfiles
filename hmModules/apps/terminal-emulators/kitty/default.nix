@@ -14,6 +14,7 @@
         font_family = config.kitty.font;
         font_size = config.kitty.font_size;
         enable_audio_bell = "no";
+        confirm_os_window_close = 0;
       };
     };
   };
