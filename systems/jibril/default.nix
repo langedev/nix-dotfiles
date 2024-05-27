@@ -5,7 +5,6 @@
     ./hardware.nix
   ];
   networking.hostName = "jibril";
-  nix.package = pkgs.nixUnstable;
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 

@@ -5,7 +5,6 @@
     ./hardware.nix
   ];
   networking.hostName = "onizuka";
-  nix.package = pkgs.nixUnstable;
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 
