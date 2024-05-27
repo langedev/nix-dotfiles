@@ -71,5 +71,6 @@
       ani-cli # Easy anime player
       lutgen # LUT generator
       prismlauncher # Minecraft launcher
+      gnucash # Personal Finance Manager
   ];
 }
