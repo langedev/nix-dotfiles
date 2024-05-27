@@ -24,7 +24,6 @@
   fish.enable = true;
   fish.setDefault = true;
   syncthing.enable = true;
-  virtualbox.enable = true;
 
   steam.enable = true;
   steam.gamemode.enable = true;
