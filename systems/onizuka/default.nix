@@ -21,8 +21,8 @@
   hyprland.enable = true;
 
   librewolf.enable = true;
-  zsh.enable = true;
-  zsh.setDefault = true;
+  fish.enable = true;
+  fish.setDefault = true;
   syncthing.enable = true;
   virtualbox.enable = true;
 
