@@ -14,6 +14,12 @@
       enable = true;
       userName = config.git.username;
       userEmail = config.git.email;
+      extraConfig = {
+        user.signingkey = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
+        gpg.format = "ssh";
+        commit.gpgSign = "true";
+        tag.gpgSign = "true";
+      };
     };
   };
 }
