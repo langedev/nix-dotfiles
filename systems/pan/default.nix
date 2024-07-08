@@ -73,5 +73,6 @@
       prismlauncher # Minecraft launcher
       jdk8 # For playing older minecraft
       gnucash # Personal Finance Manager
+      zoom-us # Zoom
   ];
 }
