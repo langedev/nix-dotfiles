@@ -7,7 +7,12 @@ let rootPath = ./.; in
 
   imports = [ inputs.hyprland.homeManagerModules.default ];
 
-  config = lib.mkIf config.hypr.enable {
+  config = {
+    nix.settings = {
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    };
+  } // lib.mkIf config.hypr.enable {
     wayland.windowManager.hyprland = {
       enable = true;
       extraConfig = ''
