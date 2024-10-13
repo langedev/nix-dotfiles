@@ -3,6 +3,7 @@
 {
   options.kitty = {
     enable = lib.mkEnableOption "Enables kitty";
+    make_default = lib.mkEnableOption "Makes kitty default terminal emulator";
     font = lib.mkOption { default = ""; };
     font_size = lib.mkOption { default = 18; };
   };
@@ -17,5 +18,6 @@
         confirm_os_window_close = 0;
       };
     };
+    defaultApps.terminal = lib.mkIf config.kitty.make_default "kitty";
   };
 }

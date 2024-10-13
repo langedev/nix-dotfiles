@@ -5,7 +5,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
     ags.url = "github:Aylur/ags";
   };
@@ -22,6 +22,7 @@
       ] ++ extraModules;
     };
   in {
-    homeConfigurations.pan = defaultConfig [ ./systems/pan ];
+    homeConfigurations."pan@onizuka" = defaultConfig [ ./systems/onizuka ];
+    homeConfigurations."pan@jibril" = defaultConfig [ ./systems/jibril ];
   };
 }

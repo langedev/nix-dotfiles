@@ -7,6 +7,7 @@
     ./gimp
     ./git
     ./hypr
+    ./librewolf
     ./lutris
     ./media-viewers
     ./neovim

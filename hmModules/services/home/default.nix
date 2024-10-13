@@ -3,6 +3,11 @@
 {
   options = {
     extraPkgs = lib.mkOption { default = []; };
+    nvidia.enable = lib.mkEnableOption "Enables nvidia requirements";
+    defaultApps = {
+      terminal = lib.mkOption { default = ""; };
+      browser = lib.mkOption { default = ""; };
+    };
   };
 
   config = {
