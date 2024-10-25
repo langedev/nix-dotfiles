@@ -26,7 +26,7 @@ let rootPath = ./.; in
     cursor = {
       enable = lib.mkEnableOption "Enables custom cursor";
       theme = lib.mkOption { default = ""; };
-      size = lib.mkOption { default = 64; };
+      size = lib.mkOption { default = "64"; };
     };
     xwayland.videobridge.enable = lib.mkEnableOption "Enable xwaylandvideobridge";
     mouse.sensitivity = lib.mkOption { default = 0; };
@@ -111,10 +111,10 @@ let rootPath = ./.; in
         };
 
         exec-once = lopts config.hypr.polkit.enable [
-          "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+          "${pkgs.polkit-kde-agent}/bin/libexec/polkit-kde-authentication-agent-1"
         ] ++ lopts config.hypr.background.enable [
-          "${pkgs.swww}/swww init"
-          "${pkgs.swww}/swww img ${config.hypr.background.path}"
+          "${pkgs.swww}/bin/swww-daemon"
+          "${pkgs.swww}/bin/swww img ${config.hypr.background.path}"
         ] ++ lopts config.ags.enable [
           "ags"
         ] ++ lopts config.beeper.enable [
@@ -176,7 +176,7 @@ let rootPath = ./.; in
             then ("${mod}" + kb)
             else ("${mod}, " + kb);
         in map modPrefix ([
-          "return, exec, ${config.defaultApps.terminal}"
+          "Return, exec, ${config.defaultApps.terminal}"
           "&SHIFT, Q, exit"
           "h, focusmonitor, l"
           "l, focusmonitor, r"
@@ -199,10 +199,10 @@ let rootPath = ./.; in
               "&SHIFT, ${toString depth}, movetoworkspacesilent, name:${ws}"
             ] ++ wsBinds wrksps (depth + 1);
         in wsBinds workspaces 1) ++ lopts config.rofi.enable [
-          "&SHIFT, return, exec, ${pkgs.rofi}/rofi -show run"
+          "&SHIFT, return, exec, ${pkgs.rofi}/bin/rofi -show run"
         ] ++ lopts config.hypr.screenshot.enable [
-          "P, exec, ${pkgs.grimblast}/grimblast --freeze copy area"
-          "&SHIFT, P, exec, ${pkgs.grimblast}/grimblast --freeze copysave area"
+          "P, exec, ${pkgs.grimblast}/bin/grimblast --freeze copy area"
+          "&SHIFT, P, exec, ${pkgs.grimblast}/bin/grimblast --freeze copysave area"
         ] ++ lopts config.hypr.workspace.scratchpad.enable [
           "i, togglespecialworkspace, scratch"
         ]);
