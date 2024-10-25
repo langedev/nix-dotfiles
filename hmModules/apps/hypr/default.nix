@@ -70,6 +70,11 @@ let rootPath = ./.; in
             builtins.mapAttrs wsMonitor wsAttr
           ));
         in makeRules config.hypr.workspace.workspaces
+        ++ [
+          "w[t1], gapsout:0, gapsin:0"
+          "w[tg1], gapsout:0, gapsin:0"
+          "f[1], gapsout:0, gapsin:0"
+        ]
         ++ lopts config.hypr.workspace.scratchpad.enable [
           "special:scratch, on-created-empty: [float; size 50% 50%; center] ${config.defaultApps.terminal}"
         ];
@@ -103,7 +108,6 @@ let rootPath = ./.; in
           "workspaces, 1, 3, default"
         ];
         master = {
-            no_gaps_when_only = 1;
             mfact = config.hypr.master.mfact;
         };
         misc = {
@@ -144,7 +148,15 @@ let rootPath = ./.; in
             allDefault = wsAttr: builtins.concatLists (builtins.attrValues (
                 builtins.mapAttrs workspaceDefaults wsAttr
               ));
-          in allDefault config.hypr.workspace.defaults
+        in allDefault config.hypr.workspace.defaults
+        ++ [
+          "bordersize 0, floating:0, onworkspace:w[t1]"
+          "rounding 0, floating:0, onworkspace:w[t1]"
+          "bordersize 0, floating:0, onworkspace:w[tg1]"
+          "rounding 0, floating:0, onworkspace:w[tg1]"
+          "bordersize 0, floating:0, onworkspace:f[1]"
+          "rounding 0, floating:0, onworkspace:f[1]"
+        ]
           ++ lopts config.hypr.xwayland.videobridge.enable [
             "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
             "noanim,class:^(xwaylandvideobridge)$"
