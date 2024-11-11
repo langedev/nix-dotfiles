@@ -38,10 +38,10 @@
     enable = true;
     path = "${config.home.homeDirectory}/med/pix/bg.png";
   };
-  # hypr.cursor = {
-  #   enable = true;
-  #   theme = "miku";
-  # };
+  hypr.cursor = {
+    enable = true;
+    theme = "miku";
+  };
   hypr = {
     screenshot.enable = true;
     mouse.sensitivity = -0.52;
