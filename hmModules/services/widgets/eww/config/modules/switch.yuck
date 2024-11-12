@@ -1,0 +1,15 @@
+(defwindow switch
+    :monitor 1
+    :stacking "fg"
+    :focusable false
+    :geometry (geometry :y "60%"
+                        :width "500px"
+                        :height "110px"
+                        :anchor "top center")
+  (border
+    "Example contenting")
+)
+
+(defwidget border []
+  (box :class "content-box"
+      (children)))

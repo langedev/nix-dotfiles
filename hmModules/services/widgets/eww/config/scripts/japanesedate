@@ -1,0 +1,31 @@
+#!/bin/sh
+
+readarray -t dateparts <<<"$(date "+%0m月%0d日%n%u")"
+
+echo -n "${dateparts[0]}["
+
+case ${dateparts[1]} in
+  1)
+    echo -n "月"
+    ;;
+  2)
+    echo -n "火"
+    ;;
+  3)
+    echo -n "水"
+    ;;
+  4)
+    echo -n "木"
+    ;;
+  5)
+    echo -n "金"
+    ;;
+  6)
+    echo -n "土"
+    ;;
+  7)
+    echo -n "日"
+    ;;
+esac
+
+echo "]"

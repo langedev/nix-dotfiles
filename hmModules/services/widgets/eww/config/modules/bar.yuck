@@ -1,0 +1,40 @@
+(include "./widgets/components/hyprwindow.yuck")
+(include "./widgets/components/hyprworkspaces.yuck")
+(include "./widgets/components/internet.yuck")
+(include "./widgets/components/japanesedate.yuck")
+(include "./widgets/components/japaneseaudio.yuck")
+
+(defwidget bar []
+  (centerbox :orientation "horizontal"
+	     :style "padding: 0px 8px"
+    (box :halign "start"
+	 :spacing 18
+	 :space-evenly false
+      (hyprworkspaces)
+      (hyprwindow)
+    )
+    ""
+    (box :halign "end"
+	 :spacing 18
+	 :space-evenly false
+      (eventbox :onhover "eww open preview"
+                :onhoverlost "eww close preview"
+	barplayer
+      )
+      (internet)
+      (japaneseaudio)
+      (japanesedate)
+      (label :style "color: #FAE3B0"
+		 :text bartime
+      )
+    )
+  )
+)
+
+(defpoll bartime :interval "10s"
+  "date '+%H:%M'"
+)
+
+(deflisten barplayer :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true"
+)

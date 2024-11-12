@@ -1,0 +1,9 @@
+(defwidget japanesebattery []
+  (box :spacing 0 :space-evenly false :style "color: #FAB387"
+    power
+    "電"
+  )
+)
+
+(defpoll power :interval "1m"
+  "cat /sys/class/power_supply/BAT1/capacity")

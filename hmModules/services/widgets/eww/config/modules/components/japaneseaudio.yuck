@@ -1,0 +1,11 @@
+(defwidget japaneseaudio []
+  (eventbox :onscroll "bash -c 'if [ '{}' = 'up' ]; then pamixer -i 5; else pamixer -d 5; fi'"
+    (box :spacing 0 :space-evenly false :style "color: #96CDFB"
+      volume
+      "音"
+    )
+  )
+)
+
+(defpoll volume :interval "1s"
+  "pamixer --get-volume")
