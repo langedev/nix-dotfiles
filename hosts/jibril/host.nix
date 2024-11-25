@@ -4,9 +4,14 @@
   imports = [
     ./hardware.nix
   ];
-  networking.hostName = "jibril";
-  nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "23.05";
+  pipewire.enable = true;
+  polkit.enable = true;
+  bluetooth.enable = true;
+  wireless = {
+    enable = true;
+    networks = builtins.fromTOML (builtins.readFile ./networks.toml);
+    secretsFile = config.sops.secrets.wireless.path;
+  };
 
   sops-nix = {
     enable = true;
@@ -15,15 +20,6 @@
     secrets = {
       wireless = {};
     };
-  };
-
-  pipewire.enable = true;
-  polkit.enable = true;
-  bluetooth.enable = true;
-  wireless = {
-    enable = true;
-    networks = builtins.fromTOML (builtins.readFile ./networks.toml);
-    secretsFile = config.sops.secrets.wireless.path;
   };
 
   user.name = "pan";

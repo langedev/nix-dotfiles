@@ -4,10 +4,6 @@
   imports = [
     ./hardware.nix
   ];
-  networking.hostName = "onizuka";
-  nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "23.05";
-
   nvidia.enable = true;
   pipewire.enable = true;
   polkit.enable = true;

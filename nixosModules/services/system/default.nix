@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, lib, ... }:
+{ config, inputs, pkgs, lib, hostname, ... }:
 
 {
   options = {
@@ -15,6 +15,10 @@
     boot.loader.timeout = 1;
     boot.loader.efi.canTouchEfiVariables = true;
 
+    networking.hostName = hostname;
+    nixpkgs.config.allowUnfree = true;
+    system.stateVersion = "23.05";
+
     time.timeZone = config.user.timezone;
 
     i18n.defaultLocale = "en_US.UTF-8";
@@ -29,7 +33,7 @@
 
     # XDG Compliance
     xdg.portal.config.common.default = "*";
-    environment.sessionVariables = rec {
+    environment.sessionVariables = {
       XDG_CONFIG_HOME = "\${HOME}/.config";
       XDG_CACHE_HOME  = "\${HOME}/.cache";
       XDG_STATE_HOME  = "\${HOME}/.local/state";

@@ -18,12 +18,16 @@
     fs = pkgs.lib.fileset;
     st = pkgs.lib.strings;
 
-    hostConfig = extraModules: nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+    hostConfig = hostname: hostpath: nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs;
+        inherit hostname;
+      };
       system = system;
       modules = [
         ./nixosModules
-      ] ++ extraModules;
+        hostpath
+      ];
     };
     hosts = let 
       hostFilter = { name, ...}: name == "host.nix";
@@ -39,12 +43,16 @@
       name = extractHostName path;
     }) hostPaths);
 
-    userConfig = extraModules: home-manager.lib.homeManagerConfiguration {
+    userConfig = usernameAtHostname: userpath: home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit inputs; };
+      extraSpecialArgs = { 
+        inherit inputs; 
+        inherit usernameAtHostname;
+      };
       modules = [
         ./hmModules
-      ] ++ extraModules;
+        userpath
+      ];
     };
     users = let
       userFilter = { name, ...}: name == "user.nix";
@@ -63,7 +71,7 @@
       }
     ) userPaths);
   in {
-    nixosConfigurations = builtins.mapAttrs (name: path: hostConfig [ path ]) hosts;
-    homeConfigurations = builtins.mapAttrs (name: path: userConfig [ path ]) users;
+    nixosConfigurations = builtins.mapAttrs (name: path: hostConfig name path) hosts;
+    homeConfigurations = builtins.mapAttrs (name: path: userConfig name path) users;
   };
 }
