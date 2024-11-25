@@ -25,14 +25,18 @@
         ./nixosModules
       ] ++ extraModules;
     };
-    hostFilter = { name, ...}: name == "host.nix";
-    hostPaths = fs.toList (fs.fileFilter hostFilter ./hosts);
-
-    hosts = builtins.listToAttrs (map (path: {
-      value = hostConfig [ path ];
-      name = builtins.unsafeDiscardStringContext (st.removeSuffix "/host.nix" (
-        builtins.elemAt (st.splitString "/hosts/" path) 1
-      ));
+    hosts = let 
+      hostFilter = { name, ...}: name == "host.nix";
+      hostPaths = fs.toList (fs.fileFilter hostFilter ./hosts);
+      # Assumes dir structure is start_of_path/hosts/hostname/host.nix
+      extractHostName = path: builtins.unsafeDiscardStringContext (
+        st.removeSuffix "/host.nix" (
+          builtins.elemAt (st.splitString "/hosts/" path) 1
+        )
+      );
+    in builtins.listToAttrs (map (path: {
+      value = path;
+      name = extractHostName path;
     }) hostPaths);
 
     userConfig = extraModules: home-manager.lib.homeManagerConfiguration {
@@ -42,11 +46,24 @@
         ./hmModules
       ] ++ extraModules;
     };
-
+    users = let
+      userFilter = { name, ...}: name == "user.nix";
+      userPaths = fs.toList (fs.fileFilter userFilter ./hosts);
+    in builtins.listToAttrs (map (path: let
+        dirsAndFiles = st.splitString "/" path;
+        dAFLength = builtins.length dirsAndFiles;
+        # Assumes dir structure is start_of_path/hosts/hostname/users/username/user.nix
+        hostname = builtins.unsafeDiscardStringContext (
+          builtins.elemAt dirsAndFiles (dAFLength - 4));
+        username = builtins.unsafeDiscardStringContext (
+          builtins.elemAt dirsAndFiles (dAFLength - 2));
+      in {
+        name = username + "@" + hostname;
+        value = path;
+      }
+    ) userPaths);
   in {
-    nixosConfigurations = hosts;
-
-    homeConfigurations."pan@onizuka" = userConfig [ ./hosts/onizuka/users/pan ];
-    homeConfigurations."pan@jibril" = userConfig [ ./hosts/jibril/users/pan ];
+    nixosConfigurations = builtins.mapAttrs (name: path: hostConfig [ path ]) hosts;
+    homeConfigurations = builtins.mapAttrs (name: path: userConfig [ path ]) users;
   };
 }
