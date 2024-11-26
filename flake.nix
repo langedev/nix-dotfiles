@@ -17,18 +17,8 @@
     pkgs = nixpkgs.legacyPackages.${system};
     fs = pkgs.lib.fileset;
     st = pkgs.lib.strings;
+    as = pkgs.lib.attrsets;
 
-    hostConfig = hostname: hostpath: nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs;
-        inherit hostname;
-      };
-      system = system;
-      modules = [
-        ./nixosModules
-        hostpath
-      ];
-    };
     hosts = let 
       hostFilter = { name, ...}: name == "host.nix";
       hostPaths = fs.toList (fs.fileFilter hostFilter ./hosts);
@@ -43,17 +33,6 @@
       name = extractHostName path;
     }) hostPaths);
 
-    userConfig = usernameAtHostname: userpath: home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = { 
-        inherit inputs; 
-        inherit usernameAtHostname;
-      };
-      modules = [
-        ./hmModules
-        userpath
-      ];
-    };
     users = let
       userFilter = { name, ...}: name == "user.nix";
       userPaths = fs.toList (fs.fileFilter userFilter ./hosts);
@@ -70,6 +49,41 @@
         value = path;
       }
     ) userPaths);
+
+    userConfig = usernameAtHostname: userpath: home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = { 
+        inherit inputs; 
+        inherit usernameAtHostname;
+      };
+      modules = [
+        ./hmModules
+        userpath
+      ];
+    };
+
+    hostConfig = hostname: hostpath: nixpkgs.lib.nixosSystem {
+      specialArgs = let
+        hostFilteredUsers = as.filterAttrs (
+          name: value: let
+            userHostname = builtins.elemAt (st.splitString "@" name) 1;
+          in userHostname == hostname
+        ) users;
+
+        hostUsers = as.mapAttrsToList (
+          name: value: builtins.elemAt (st.splitString "@" name) 0
+        ) hostFilteredUsers;
+      in {
+        inherit inputs;
+        inherit hostname;
+        "usernameList" = hostUsers;
+      };
+      system = system;
+      modules = [
+        ./nixosModules
+        hostpath
+      ];
+    };
   in {
     nixosConfigurations = builtins.mapAttrs (name: path: hostConfig name path) hosts;
     homeConfigurations = builtins.mapAttrs (name: path: userConfig name path) users;

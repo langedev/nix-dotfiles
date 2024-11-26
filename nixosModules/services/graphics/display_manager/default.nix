@@ -15,7 +15,7 @@
         };
         default_session = lib.mkIf config.hyprland.enable {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-          user = config.user.name;
+          user = "greeter";
         };
       };
     };

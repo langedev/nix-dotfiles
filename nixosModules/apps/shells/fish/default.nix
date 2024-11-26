@@ -9,7 +9,7 @@
 
   config = lib.mkIf config.fish.enable {
     programs.fish.enable = true;
-    users.users.defaultUser.shell = lib.mkIf config.fish.setDefault pkgs.fish;
+    users.defaultUserShell = lib.mkIf config.fish.setDefault pkgs.fish;
     environment.shells = with pkgs; [ fish ];
   };
 }

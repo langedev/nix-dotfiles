@@ -22,8 +22,7 @@
     };
   };
 
-  user.name = "pan";
-  user.timezone = "America/Los_Angeles";
+  system.timezone = "America/Los_Angeles";
 
   tuigreet.enable = true;
   hyprland.enable = true;
@@ -31,5 +30,4 @@
   librewolf.enable = true;
   fish.enable = true;
   fish.setDefault = true;
-  syncthing.enable = true;
 }

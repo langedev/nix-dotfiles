@@ -14,7 +14,7 @@
       histFile = "$HOME/.config/zsh/history";
       histSize = 2000;
     };
-    users.users.defaultUser.shell = lib.mkIf config.zsh.setDefault pkgs.zsh;
+    users.defaultUserShell = lib.mkIf config.zsh.setDefault pkgs.zsh;
     environment.shells = with pkgs; [ zsh ];
   };
 }

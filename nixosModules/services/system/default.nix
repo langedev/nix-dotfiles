@@ -1,9 +1,8 @@
-{ config, inputs, pkgs, lib, hostname, ... }:
+{ config, inputs, pkgs, lib, hostname, usernameList, ... }:
 
 {
   options = {
-    user.name = lib.mkOption { default = "pan"; };
-    user.timezone = lib.mkOption { default = "America/Los_Angeles"; };
+    system.timezone = lib.mkOption { default = "America/Los_Angeles"; };
     system.extraFonts = lib.mkOption { default = []; };
     system.doAutoUpgrade = lib.mkEnableOption "Enable auto upgrading system";
   };
@@ -19,7 +18,7 @@
     nixpkgs.config.allowUnfree = true;
     system.stateVersion = "23.05";
 
-    time.timeZone = config.user.timezone;
+    time.timeZone = config.system.timezone;
 
     i18n.defaultLocale = "en_US.UTF-8";
 
@@ -45,15 +44,20 @@
     };
     nix.settings.use-xdg-base-directories = true;
 
-    users.groups = {
-      wheel = { };
-      network = { };
-    };
-
-    users.users.defaultUser = {
-      name = config.user.name;
-      isNormalUser = true;
-      extraGroups = [ "wheel" "network" ];
+    users = {
+      users = builtins.listToAttrs (map (
+        user: {
+          name = user;
+          value = {
+            name = user;
+            isNormalUser = true;
+          };
+        }
+      ) usernameList);
+      groups = {
+        wheel = { };
+        network = { };
+      };
     };
 
     fonts = {
