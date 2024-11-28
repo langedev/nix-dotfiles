@@ -4,6 +4,8 @@
 
     home-manager.url = "github:nix-community/home-manager";
 
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
+
     hyprland.url = "git+https://github.com/hyprwm/Hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
@@ -12,7 +14,7 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
   };
 
-  outputs = { self, home-manager, nixpkgs, ... }@inputs: let
+  outputs = { self, home-manager, nixpkgs, lix-module, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     fs = pkgs.lib.fileset;
@@ -81,6 +83,7 @@
       system = system;
       modules = [
         ./nixosModules
+        lix-module.nixosModules.default
         hostpath
       ];
     };
