@@ -23,6 +23,7 @@
   };
 
   system.timezone = "America/Los_Angeles";
+  system.users.bigWheels = [ "pan" ];
 
   tuigreet.enable = true;
   hyprland.enable = true;

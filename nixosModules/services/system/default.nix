@@ -5,6 +5,7 @@
     system.timezone = lib.mkOption { default = "America/Los_Angeles"; };
     system.extraFonts = lib.mkOption { default = []; };
     system.doAutoUpgrade = lib.mkEnableOption "Enable auto upgrading system";
+    system.users.bigWheels = lib.mkOption { default = []; };
   };
 
   config = {
@@ -51,11 +52,14 @@
           value = {
             name = user;
             isNormalUser = true;
+            extraGroups = [ "network" ];
           };
         }
       ) usernameList);
       groups = {
-        wheel = { };
+        wheel = {
+          members = config.system.users.bigWheels;
+        };
         network = { };
       };
     };
