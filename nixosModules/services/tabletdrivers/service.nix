@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  options = {
-    tablet.enable = lib.mkEnableOption
+  options.tablet = {
+    enable = lib.mkEnableOption
       "Enables tablet support";
   };
 

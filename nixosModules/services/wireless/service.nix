@@ -1,12 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 {
-  options = {
-    wireless = {
-      enable = lib.mkEnableOption "Enables wireless";
-      networks = lib.mkOption { default = {}; };
-      secretsFile = lib.mkOption {};
-    };
+  options.wireless = {
+    enable = lib.mkEnableOption "Enables wireless";
+    networks = lib.mkOption { default = {}; };
+    secretsFile = lib.mkOption {};
   };
 
   config = lib.mkIf config.wireless.enable {

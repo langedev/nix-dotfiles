@@ -3,6 +3,7 @@
 {
   imports = [
     ./apps
+    ./automatic
     ./services
   ];
 }

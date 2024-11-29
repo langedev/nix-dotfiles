@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  options = {
-    nvidia.enable = lib.mkEnableOption
+  options.nvidia = {
+    enable = lib.mkEnableOption
       "Enables nvidia with proprietary drivers";
   };
 

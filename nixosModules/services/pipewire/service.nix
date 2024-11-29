@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  options = {
-    pipewire.enable = lib.mkEnableOption "Enables pipewire and pulsemixer";
+  options.pipewire = {
+    enable = lib.mkEnableOption "Enables pipewire and pulsemixer";
   };
 
   config = lib.mkIf config.pipewire.enable {

@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  options = {
-    tuigreet.enable = lib.mkEnableOption "enables tuigreet with greetd";
+  options.tuigreet = {
+    enable = lib.mkEnableOption "enables tuigreet with greetd";
   };
 
   config = lib.mkIf config.tuigreet.enable {

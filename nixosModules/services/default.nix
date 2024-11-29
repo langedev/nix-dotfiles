@@ -1,12 +1,6 @@
-{ config, pkgs, lib, ... }:
-
-{
-  imports = [
-    ./graphics
-    ./networking
-    ./pipewire
-    ./polkit
-    ./sops-nix
-    ./system
-  ];
+{ lib, ... }: let
+  fs = lib.fileset;
+  appFilter = {name, ...}: name == "service.nix";
+in {
+  imports = fs.toList (fs.fileFilter appFilter ./.);
 }

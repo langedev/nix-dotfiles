@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  options = {
-    polkit.enable = lib.mkEnableOption "Enables polkit with kde handler";
+  options.polkit = {
+    enable = lib.mkEnableOption "Enables polkit with kde handler";
   };
 
   config = lib.mkIf config.polkit.enable {
