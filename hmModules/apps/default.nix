@@ -1,20 +1,6 @@
-{ config, pkgs, ... }:
-
-{
-  imports = [
-    ./chat
-    ./file-browsers
-    ./gimp
-    ./git
-    ./hypr
-    ./librewolf
-    ./lutris
-    ./media-viewers
-    ./neovim
-    ./obs
-    ./rofi
-    ./shells
-    ./terminal-emulators
-    ./zoxide
-  ];
+{ lib, ... }: let
+  fs = lib.fileset;
+  appFilter = {name, ...}: name == "app.nix";
+in {
+  imports = fs.toList (fs.fileFilter appFilter ./.);
 }
