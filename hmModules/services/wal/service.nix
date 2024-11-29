@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }:
-let rootPath = ./.; in
+
 {
   options.colors = {
     enable = lib.mkEnableOption "Enables setting colors using wallust";

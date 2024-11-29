@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 let rootPath = ./.; in
 {
   options.timer = {
