@@ -28,7 +28,6 @@
   tuigreet.enable = true;
   hyprland.enable = true;
 
-  librewolf.enable = true;
-  fish.enable = true;
-  fish.setDefault = true;
+  shell.enabledShells = [ "fish" ];
+  shell.defaultShell = "fish";
 }
