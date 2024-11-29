@@ -1,14 +1,14 @@
-{ config, inputs, pkgs, lib, ... }:
+{ config, inputs, lib, ... }:
 
 {
-  options = {
-    aagl.enable = lib.mkEnableOption
+  options.aagl = {
+    enable = lib.mkEnableOption
       "Enables another anime game launcher settings";
-    aagl.honkai-rail = lib.mkEnableOption
+    honkai-rail = lib.mkEnableOption
       "Enables honkai star rail";
-    aagl.genshin = lib.mkEnableOption
+    genshin = lib.mkEnableOption
       "Enables genshin impact";
-    aagl.honkai-3rd = lib.mkEnableOption
+    honkai-3rd = lib.mkEnableOption
       "Enables honkai 3rd impact";
   };
 

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 {
   options.steam = {
@@ -12,6 +12,6 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-    programs.gamemode.enable = true;
+    programs.gamemode.enable = lib.mkIf config.steam.gamemode true;
   };
 }

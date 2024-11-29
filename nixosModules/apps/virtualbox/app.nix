@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 {
   options.virtualbox = {
@@ -8,8 +8,6 @@
 
   config = lib.mkIf config.virtualbox.enable {
     virtualisation.virtualbox.host.enable = true;
-    users.extraGroups.vboxusers.members = [
-      config.user.name
-    ] ++ config.virtualbox.extra-users;
+    users.extraGroups.vboxusers.members = config.virtualbox.extra-users;
   };
 }
