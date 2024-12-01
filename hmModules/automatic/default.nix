@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, usernameAtHostname, ... }:
 
 {
   options = {
@@ -9,10 +9,19 @@
       browser = lib.mkOption { default = ""; };
     };
   };
-
-  config = {
+  config = let
+    st = lib.strings;
+  in {
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+    nixpkgs.config.allowUnfree = true;
+    home.stateVersion = "23.05";
+
+    home = {
+      username = builtins.elemAt (st.splitString "@" usernameAtHostname) 0;
+      homeDirectory = "/home/" + config.home.username;
+      packages = config.extraPkgs;
+    };
 
     home.sessionVariables = {
       GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
@@ -36,8 +45,5 @@
         download    = "${home}/dwn";
       };
     };
-
-    home.homeDirectory = "/home/" + config.home.username;
-    home.packages = config.extraPkgs;
   };
 }

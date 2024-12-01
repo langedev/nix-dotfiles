@@ -1,10 +1,6 @@
 { config, ... }:
 
 {
-  home.username = "pan";
-  nixpkgs.config.allowUnfree = true;
-  home.stateVersion = "23.05";
-
   hypr.enable = true;
   hypr.monitor = {
     details = [
@@ -102,8 +98,6 @@
     "${config.home.homeDirectory}/.pki"
   ];
   zoxide.enable = true;
-
-  gimp.enable = true;
 
   beeper.enable = true;
   discord.enable = true;
