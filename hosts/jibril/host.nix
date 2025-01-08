@@ -27,7 +27,10 @@
 
   tuigreet.enable = true;
   hyprland.enable = true;
+  tailscale.enable = true;
 
   shell.enabledShells = [ "fish" ];
   shell.defaultShell = "fish";
+
+  steam.enable = true;
 }
