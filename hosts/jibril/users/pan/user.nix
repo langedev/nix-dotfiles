@@ -58,6 +58,7 @@
   kitty.enable = true;
   kitty.make_default = true;
   kitty.font = "Cascadia Code";
+  kitty.theme.catppuccin.enable = true;
   git.enable = true;
   git.username = "Julia Lange";
   git.email = "public@julialange.org";
