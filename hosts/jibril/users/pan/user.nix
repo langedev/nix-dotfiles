@@ -72,6 +72,7 @@
   neovim.enable = true;
   neovim.languages = {
     c.enable = true;
+    go.enable = true;
     nix.enable = true;
     rust.enable = true;
   };

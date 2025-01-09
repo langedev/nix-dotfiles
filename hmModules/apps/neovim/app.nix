@@ -5,6 +5,7 @@
     enable = lib.mkEnableOption "Enables neovim";
     languages = {
       c.enable = lib.mkEnableOption "Enables c support";
+      go.enable = lib.mkEnableOption "Enables go support";
       nix.enable = lib.mkEnableOption "Enables nix support";
       rust.enable = lib.mkEnableOption "Enables rust support";
     };
@@ -48,6 +49,7 @@
 
       extraPackages = with pkgs; [
         (lib.mkIf config.neovim.languages.c.enable libclang)
+        (lib.mkIf config.neovim.languages.go.enable gopls)
         (lib.mkIf config.neovim.languages.nix.enable nil)
         (lib.mkIf config.neovim.languages.rust.enable rust-analyzer)
       ];
@@ -96,6 +98,10 @@
         rust-pkg = lopts cfgl.rust.enable (with pkgs.vimPlugins; [
           rustaceanvim
         ]);
+        
+        go-pkg = lopts cfgl.go.enable (with pkgs.vimPlugins; [
+          go-nvim
+        ]);
 
         wiki = lopts cfgp.wiki.enable (with pkgs.vimPlugins; [
           {
@@ -114,7 +120,7 @@
           }
         ]);
       in comments ++ fugitive ++ luasnip-pkg ++ lualine ++
-        nix-pkg ++ rust-pkg ++ wiki;
+        nix-pkg ++ rust-pkg ++ go-pkg ++ wiki;
     };
   };
 }

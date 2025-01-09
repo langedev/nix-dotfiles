@@ -22,6 +22,7 @@ in {
       # dynamically. For not just have them always loaded regardless of config
       treeplugs = p: [
         p.tree-sitter-c
+        p.tree-sitter-go
         p.tree-sitter-nix
         p.tree-sitter-rust
       ];

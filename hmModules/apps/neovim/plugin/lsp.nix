@@ -35,12 +35,12 @@
         end
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-      '' + lib.strings.optionalString cfgl.nix.enable ''
-        require('lspconfig').nil_ls.setup {}
       '' + lib.strings.optionalString cfgl.c.enable ''
         require('lspconfig').clangd.setup {}
-      '' + lib.strings.optionalString cfgl.rust.enable ''
-        require('lspconfig').rustaceanvim.setup {}
+      '' + lib.strings.optionalString cfgl.go.enable ''
+        require('lspconfig').gopls.setup {}
+      '' + lib.strings.optionalString cfgl.nix.enable ''
+        require('lspconfig').nil_ls.setup {}
       '';
     in with pkgs.vimPlugins; [
       {
