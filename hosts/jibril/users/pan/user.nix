@@ -89,6 +89,7 @@
     treesitter.enable = true;
     wiki.enable = true;
   };
+  neovim.themes.catppuccin.enable = true;
 
   lf.enable = true;
   lf.hiddenfiles = [

@@ -9,6 +9,9 @@
       nix.enable = lib.mkEnableOption "Enables nix support";
       rust.enable = lib.mkEnableOption "Enables rust support";
     };
+    themes = {
+      catppuccin.enable = lib.mkEnableOption "Enables catppuccin theme";
+    };
     plugins = {
       comments.enable = lib.mkEnableOption "Enables nvim-comment";
       fugitive.enable = lib.mkEnableOption "Enables git-fugitive";
@@ -59,6 +62,7 @@
         lopts = lib.lists.optionals;
         cfgp = config.neovim.plugins;
         cfgl = config.neovim.languages;
+        cfgt = config.neovim.themes;
 
         comments = lopts cfgp.comments.enable (with pkgs.vimPlugins; [
           {
@@ -83,9 +87,14 @@
             plugin = lualine-nvim;
             type = "lua";
             config = ''
-              require("lualine").setup({
-                icons_enabled = true,
-              })
+              require("lualine").setup {
+                options = {
+                  icons_enabled = true,
+            '' + lib.strings.optionalString cfgt.catppuccin.enable ''
+                  theme = "catppuccin"
+            '' + ''
+                }
+              }
             '';
           }
           nvim-web-devicons
@@ -101,6 +110,23 @@
         
         go-pkg = lopts cfgl.go.enable (with pkgs.vimPlugins; [
           go-nvim
+        ]);
+
+        catppuccin-pkg = lopts cfgt.catppuccin.enable (with pkgs.vimPlugins; [
+          {
+            plugin = catppuccin-nvim;
+            type = "lua";
+            config = ''
+              vim.cmd.colorscheme "catppuccin-mocha"
+              require('catppuccin').setup({
+                integrations = {
+            '' + lib.strings.optionalString cfgp.wiki.enable ''
+                  vimwiki = true
+            '' + ''
+                }
+              })
+            '';
+          }
         ]);
 
         wiki = lopts cfgp.wiki.enable (with pkgs.vimPlugins; [
@@ -120,7 +146,7 @@
           }
         ]);
       in comments ++ fugitive ++ luasnip-pkg ++ lualine ++
-        nix-pkg ++ rust-pkg ++ go-pkg ++ wiki;
+        nix-pkg ++ rust-pkg ++ go-pkg ++ wiki ++ catppuccin-pkg;
     };
   };
 }
