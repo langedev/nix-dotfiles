@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   hypr.enable = true;
@@ -104,4 +104,8 @@
 
   beeper.enable = true;
   discord.enable = true;
+  extraPkgs = with pkgs; [
+    # Applications
+    musescore
+  ];
 }
