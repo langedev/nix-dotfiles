@@ -80,7 +80,6 @@
         inherit hostname;
         "usernameList" = hostUsers;
       };
-      system = system;
       modules = [
         ./nixosModules
         lix-module.nixosModules.default
