@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 {
   options.librewolf = {
@@ -7,9 +7,7 @@
   };
 
   config = lib.mkIf config.librewolf.enable {
-    home.packages = with pkgs; [
-      librewolf
-    ];
+    programs.librewolf.enable = true;
     home.sessionVariables = {
       BROWSER = "librewolf";
     };
