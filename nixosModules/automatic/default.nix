@@ -22,7 +22,7 @@
     })
     {
       networking.hostName = hostname;
-      system.stateVersion = "23.05";
+      system.stateVersion = lib.mkDefault "23.05";
 
       time.timeZone = config.system.timezone;
       i18n.defaultLocale = "en_US.UTF-8";
