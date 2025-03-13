@@ -82,7 +82,6 @@
       };
       modules = [
         ./nixosModules
-        lix-module.nixosModules.default
         hostpath
       ];
     };
