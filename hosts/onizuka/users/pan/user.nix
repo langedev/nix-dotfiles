@@ -1,20 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "pan";
-  nixpkgs.config.allowUnfree = true;
-  home.stateVersion = "23.05";
-
   hypr.enable = true;
-  hypr.monitor = {
-    details = [
+  hypr.monitor.details = [
       "DP-2,2560x1440@144,0x0,1"
       "DP-1,2560x1440@144,-2560x0,1"
       "HDMI-A-1,disable"
     ];
-    primary = "DP-2";
-    secondary = "DP-1";
-  };
   hypr.workspace = {
     workspaces = {
       "DP-2" = [
@@ -29,13 +21,13 @@
     };
     scratchpad.enable = true;
     defaults = {
-      "name:web" = [ "librewolf" ];
-      "name:med" = [ "librewolf,title:Picture-in-Picture" ];
-      "name:chat" = [ "Beeper" ];
-      "name:game" = [ "lutris" "explorer.exe" ];
+      "name:web" = [ "class:(librewolf)" ];
+      "name:med" = [ "class:(librewolf),title:Picture-in-Picture" ];
+      "name:chat" = [ "class:(Beeper)" ];
+      "name:game" = [ "class:(lutris)" "class:(explorer.exe)" ];
     };
   };
-  windows.opaque = [
+  hypr.windows.opaque = [
     "initialTitle:^(Discord Popout)$"
     "class:^(firefox)$"
     "class:^(Gimp)$"
@@ -57,7 +49,6 @@
     master.mfact = 0.53;
     xwayland.videobridge.enable = true;
   };
-  ags.enable = true;
   rofi.enable = true;
 
   timer.enableHourly = true;
@@ -126,7 +117,7 @@
       lutgen # LUT generator
       prismlauncher # Minecraft launcher
       jdk8 # For playing older minecraft
-      gnucash # Personal Finance Manager
       zoom-us # Zoom
+      musescore
   ];
 }

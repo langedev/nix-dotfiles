@@ -9,21 +9,18 @@
   polkit.enable = true;
   tablet.enable = true;
 
-  user.name = "pan";
-  user.timezone = "America/Los_Angeles";
-  system.doAutoUpgrade = true;
+  system.timezone = "America/Los_Angeles";
+  system.users.bigWheels = [ "pan" ];
 
   tuigreet.enable = true;
   hyprland.enable = true;
 
-  librewolf.enable = true;
-  fish.enable = true;
-  fish.setDefault = true;
-  syncthing.enable = true;
-
   steam.enable = true;
-  steam.gamemode.enable = true;
+  steam.gamemode = true;
   aagl.enable = true;
   aagl.honkai-rail = true;
   input-remapper.enable = true;
+
+  shell.enabledShells = [ "fish" ];
+  shell.defaultShell = "fish";
 }
