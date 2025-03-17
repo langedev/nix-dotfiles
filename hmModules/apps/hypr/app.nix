@@ -115,7 +115,7 @@ let rootPath = ./.; in
         };
 
         exec-once = lopts config.hypr.polkit.enable [
-          "${pkgs.polkit-kde-agent}/bin/libexec/polkit-kde-authentication-agent-1"
+          "${pkgs.kdePackages.polkit-kde-agent-1}/bin/libexec/polkit-kde-authentication-agent-1"
         ] ++ lopts config.hypr.background.enable [
           "${pkgs.swww}/bin/swww-daemon"
           "${pkgs.swww}/bin/swww img ${config.hypr.background.path}"
@@ -229,9 +229,8 @@ let rootPath = ./.; in
     home.packages = with pkgs; [
       wlr-randr # Xrandr for wayland
       wl-clipboard # Clipboard manager for wayland
-      xdg-desktop-portal-hyprland # XDP for hyprland
     ] ++ lopts config.hypr.xwayland.videobridge.enable [
-      xwaylandvideobridge
+      kdePackages.xwaylandvideobridge
     ] ++ lopts config.hypr.cursor.enable [
       hyprcursor
     ] ++ lopts config.hypr.screenshot.enable [

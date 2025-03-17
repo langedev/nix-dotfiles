@@ -8,7 +8,7 @@
   config = lib.mkIf config.polkit.enable {
     security.polkit.enable = true;
     environment.systemPackages = with pkgs; [
-      polkit-kde-agent
+      kdePackages.polkit-kde-agent-1
     ];
   };
 }
