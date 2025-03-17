@@ -6,6 +6,13 @@
   };
 
   config = lib.mkIf config.sshd.enable {
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      ports = [ 922 ];
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+      };
+    };
   };
 }
