@@ -5,9 +5,11 @@
 keys:
   - &onizuka age1ey3wr2wnkgny3dfgvnyrf0cptwzr7s5x464p2y9ya58lpay8lfrsds3y68
   - &jibril age1n8936ux6ushjyz3kuumdrz63jcwsvz7qkfj66rrkgk8d78wl2dssgev4tm
+  - &juri age13udaj4rx4g5fwqe5qg8e3lh3dqqp9me4qqq66z2s9qev4z8pyv5q9m8e72
 creation_rules:
-  - path_regex: systems/[^/]+/secrets\.yaml$
+  - path_regex: hosts/[^/]+/secrets\.yaml$
     key_groups:
     - age:
       - *onizuka
       - *jibril
+      - *juri
