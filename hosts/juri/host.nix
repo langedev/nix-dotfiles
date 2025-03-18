@@ -1,6 +1,7 @@
 { config, ... }:
-
-{
+let
+  email = "admin@woach.me";
+in {
   imports = [ 
     ./hardware.nix
   ];
@@ -17,10 +18,23 @@
     };
   };
 
+  caddy = {
+    enable = true;
+    adminEmail = email;
+    vhosts = {
+      "juri.woach.me" = {
+        extraConfig = ''
+          reverse_proxy :3000
+        '';
+        serverAliases = [ "*.juri.woach.me" ];
+      };
+    };
+  };
+
   pds = {
     enable = true;
     hostname = "juri.woach.me";
-    adminEmail = "admin@woach.me";
+    adminEmail = email;
     environmentFile = config.sops.secrets.pdsEnv.path;
   };
 
@@ -29,4 +43,3 @@
 
   sshd.enable = true;
 }
-
