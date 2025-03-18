@@ -32,7 +32,6 @@
       environment.systemPackages = with pkgs; [
         git
         neovim
-        nnn
         xdg-user-dirs
       ];
 
