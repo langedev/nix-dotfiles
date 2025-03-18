@@ -51,7 +51,7 @@ let rootPath = ./.; in
         };
       };
     };
-    xdg.configFile."timer-scripts" = {
+    xdg.configFile."timer-scripts" = lib.mkIf (config.timer.enableQuarterly || config.timer.enableHourly) {
       source = rootPath + "/scripts";
       target = "timer_scripts/";
       executable = true;
