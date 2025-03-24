@@ -15,6 +15,9 @@ in {
     sopsFile = ./secrets.yaml;
     secrets = {
       pdsEnv = {};
+      forgejoPassword = {
+        owner = "forgejo";
+      };
     };
   };
 
@@ -28,6 +31,11 @@ in {
         '';
         serverAliases = [ "*.juri.woach.me" ];
       };
+      "winry.woach.me" = {
+        extraConfig = ''
+          reverse_proxy :${builtins.toString config.forgejo.server.port}
+        '';
+      };
     };
   };
 
@@ -36,6 +44,16 @@ in {
     hostname = "juri.woach.me";
     adminEmail = email;
     environmentFile = config.sops.secrets.pdsEnv.path;
+  };
+
+  forgejo = {
+    enable = true;
+    server.domain = "winry.woach.me";
+    users.admin = {
+      enable = true;
+      username = "Julia";
+      passwordFile = config.sops.secrets.forgejoPassword.path;
+    };
   };
 
   shell.enabledShells = [ "fish" ];
