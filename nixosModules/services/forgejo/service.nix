@@ -24,10 +24,11 @@
           DOMAIN = config.forgejo.server.domain; #"winry.woach.me";
           HTTP_PORT = config.forgejo.server.port;
           ROOT_URL = "https://${config.services.forgejo.settings.server.DOMAIN}/";
+          SSH_PORT = config.sshd.port;
         };
-        # SSH_PORT = config.sshd.port;
         session.COOKIE_SECURE = true;
         service.DISABLE_REGISTRATION = true;
+        repository.DISABLE_HTTP_GIT = true;
       };
     };
 
