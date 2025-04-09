@@ -56,6 +56,8 @@ in {
     };
   };
 
+  postgres.enable = true;
+
   shell.enabledShells = [ "fish" ];
   shell.defaultShell = "fish";
 
